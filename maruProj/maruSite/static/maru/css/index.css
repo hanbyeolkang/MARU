@@ -1,0 +1,12 @@
+.title {
+    font-size: 20px;
+    color: black;
+}
+
+.desc {
+    font-size: 14px;
+    color: black;
+    line-height: 1.6;
+    margin-top: 10px;
+    padding: 10px 30px 10px 30px;   /* 상우하좌 */
+}

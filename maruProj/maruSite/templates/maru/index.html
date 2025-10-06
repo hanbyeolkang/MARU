@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>MARU Book analysis</title>
     <link rel="stylesheet" type="text/css" href="{% static 'maru/css/common.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'maru/css/index.css' %}">
 </head>
 <body>
     <div id="whole">
@@ -13,16 +14,47 @@
             <!--통계 자료-->
             <!--내부는 페이지 내용에 따라 section으로 구분해서 작성-->
             <section class="statistics">
-                <span>전지점 통합 장르 분포 차트</span>
-                <img id="genre_chart" src="" alt="장르 차트">
-                <p>예시. 여기에는 원형 통계가 나타남</p>
-                <p>예시. 여기에는 원형 통계가 나타남</p>
+                <span class="title">지점 통합 장르 분포</span>
+                <img id="genre_chart" class="chart" src="" alt="장르 차트">
+                <p class="desc">
+                    전국 주요 교보문고 지점의 통합 결과, <strong>소설(약 39%)·시/에세이(약 11%)·인문(약 10%)</strong> 장르가 전체 베스트셀러의 절반
+                    이상을 차지했습니다. 이 세 장르는 공통적으로 ‘개인적 공감’과 ‘자기 성장’이라는 키워드를 중심으로 인기를 얻고 있으며,
+                    이는 최근 독서 트렌드가 단순한 정보 습득보다 <strong>정서적 위로와 자기 성찰</strong>에 초점을 맞추고 있음을 보여줍니다. 또한<br>
+                    외국어·경제·자기계발 분야 역시 각 8~10%로 고르게 분포하여, 실용적 학습 수요 역시 꾸준히 유지되고 있습니다.
+                </p>
             </section>
+
             <section class="statistics">
-                <span>지역별 평균 가격 비교</span>
-                <img id="price_chart" src="" alt="가격 그래프"/>
-                <p>예시. 여기에는 원형 통계가 나타남</p>
-                <p>예시. 여기에는 원형 통계가 나타남</p>
+                <span class="title">지점별 평균 가격</span>
+                <img id="price_chart" class="chart" src="" alt="가격 그래프"/>
+                <p class="desc">
+                    지점별 베스트셀러 평균 가격은 대체로 <strong>15,000원 내외</strong>로 비슷하지만, <strong>서울대점의 평균가는 약 20,000원 이상</strong>으로 다른<br>
+                    지역보다 높게 나타났습니다. 이는 해당 지점에서 <strong>경제·인문 분야 도서의 비중이 높기 때문으로</strong> 해석됩니다.<br>
+                    반면, 광주·대전 등 일부 지역은 아동·문학 중심의 판매가 많아 상대적으로 평균가가 낮게 형성되었습니다.<br>
+                    즉, <strong>지점별 주요 독자층의 관심 분야가 도서 가격에도 영향을 미치는 패턴</strong>이 확인됩니다.
+                </p>
+            </section>
+
+            <section class="statistics">
+                <span class="title">저자별 베스트셀러 수 TOP 10</span>
+                <img id="author_chart" class="chart" src="" alt="저자 차트">
+                <p class="desc">
+                    상위 10명의 저자는 여러 지점에서 반복적으로 베스트셀러에 이름을 올렸습니다. 특히 <strong>자기계발·에세이 분야 작가</strong>들이<br>
+                    다수 포함되어 있으며, 이는 콘텐츠의 주제가 전국적으로 공감대를 형성하고 있음을 시사합니다. 이들 작가의 신간은 출간<br>
+                    직후 각 지점 순위에 빠르게 반영되는 특징을 보이며, 결과적으로 <strong>‘작가 브랜드’가 판매를 견인하는 구조</strong>가 형성되어<br>
+                    있습니다. 즉, 단순히 작품 개별 경쟁이 아닌, 작가 인지도 중심의 시장 구조가 강화되고 있습니다.
+                </p>
+            </section>
+
+            <section class="statistics">
+                <span class="title">리뷰 수와 평점의 상관관계</span>
+                <img id="review_chart" class="chart" src="" alt="리뷰-평점 차트">
+                <p class="desc">
+                    대부분의 도서는 <strong>평점 9점 이상</strong>으로 높은 만족도를 보이며, 리뷰 수와 평점 간의 뚜렷한 상관관계는 나타나지 않았습니다.<br>
+                    다만 <strong>리뷰 500건 이상</strong>의 인기 도서군은 평점이 안정적으로 유지되는 반면, 리뷰 수가 적은 도서일수록 평가가 극단적으로<br>
+                    갈리는 경향이 있습니다. 이는 독자 수가 많을수록 평가가 평균화되며, 특정 소수 의견의 영향이 감소하는<br>
+                    <strong>‘리뷰 평준화 효과’</strong>가 작용함을 의미합니다.
+                </p>
             </section>
         </div>
     </div>
@@ -32,6 +64,8 @@
         document.addEventListener('DOMContentLoaded', function() {
             const genreChart = document.getElementById('genre_chart');
             const priceChart = document.getElementById('price_chart');
+            const authorChart = document.getElementById('author_chart');
+            const reviewChart = document.getElementById('review_chart');
             const delay = 500; // 0.5초 지연 시간
 
             // 1. 장르 차트 먼저 로드
@@ -41,10 +75,19 @@
 
             // 2. 0.5초 후 가격 차트 로드
             setTimeout(() => {
-                if (priceChart) {
+                if (priceChart)
                     priceChart.src = "{% url 'price-chart' %}?t={{ timestamp_price }}";
-                }
             }, delay);
+
+            setTimeout(() => {
+                if (authorChart)
+                    authorChart.src = "{% url 'author-chart' %}?v={{ timestamp_auth }}";
+            }, delay * 2);
+
+            setTimeout(() => {
+                if (reviewChart)
+                    reviewChart.src = "{% url 'review-chart' %}?v={{ timestamp_rev }}";
+            }, delay * 3);
         });
     </script>
 </body>

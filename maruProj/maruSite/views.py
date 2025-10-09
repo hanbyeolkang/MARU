@@ -8,7 +8,7 @@ def index(request):
         'timestamp_genre': current_time, 
         'timestamp_price': current_time + 1,
         'timestamp_auth': current_time + 2,
-        'timestimestamp_revtamp_price': current_time + 3,
+        'timestamp_rev': current_time + 3,
     }
     return render(request, 'maru/index.html', context)
 

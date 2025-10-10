@@ -19,24 +19,30 @@ $ pip install pandas
 - Python 3.11
 - Django 5.x
 - Pandas, Matplotlib
-- PostgreSQL / SQLite
 - HTML, CSS, JavaScript (Chart.js)
 
 
 ## 폴더 구조
 ```
 MARU/  
-├─ maruProj/    
+├─ maruProj/
+│  ├─ maruApp/
+│  │  ├─ viewsOfIndex.py       # 메인 페이지에서 필요한 데이터 처리
+│  │  │  viewsOfJenre.py       # 장르별 페이지에서 필요한 데이터 처리
+│  │  │  viewsOfLocation.py    # 지역별 페이지에서 필요한 데이터 처리
+│  │  └─ urls.py               # URL 라우팅
 │  ├─ maruSite/                    
 │  │  ├─ static/               # CSS, JS 등 정적 파일  
 │  │  │  └─ maru/
 │  │  │     ├─ css/            # 공통 CSS  
 │  │  │     └─ js/             # 공통 JS  
 │  │  ├─ templates/            # HTML 템플릿  
-│  │  │  └─ maru/  
-│  │  │     └─ genre.html      # 장르별 분석 페이지  
+│  │  │  └─ maru/
+│  │  │     └─ index.html      # 메인 페이지
+│  │  │     └─ genre.html      # 장르별 분석 페이지
+│  │  │     └─ location.html   # 지역별 분석 페이지
 │  │  ├─ views.py              # 뷰 로직 (페이지 렌더링, API 처리)  
-│  │  └─ urls.py               # URL 라우팅  
+│  │  └─ urls.py               # URL 라우팅
 │  ├─ manage.py                    
 │  └─ settings.py                 
 ├─ .gitignore                    

@@ -4,7 +4,6 @@ import os
 import re
 from collections import Counter
 import random
-
 import matplotlib 
 matplotlib.use('Agg') 
 import matplotlib.pyplot as plt
@@ -13,11 +12,17 @@ from django.conf import settings
 from django.http import JsonResponse, HttpResponse 
 from django.shortcuts import render
 from django.db.models import F, FloatField, Sum
-
 from .models import Book
+import platform
 
 
-matplotlib.rc('font', family='AppleGothic')
+# 한글 폰트 설정
+if platform.system() == 'Darwin': #맥
+        plt.rc('font', family='AppleGothic')
+elif platform.system() == 'Windows': #윈도우
+        plt.rc('font', family='Malgun Gothic')
+elif platform.system() == 'Linux': #리눅스 (구글 콜랩)
+        plt.rc('font', family='Malgun Gothic')
 plt.rcParams['axes.unicode_minus'] = False
 
 

@@ -70,12 +70,12 @@
 
 
             <!-- 장르별 상관관계 히트맵 섹션 style="width:100%; height:500px;"-->
-            <section class="statistics">
+            {% comment %} <section class="statistics">
                 <span style="color: rgb(112, 112, 112); font-size: 14px;">Genre Correlation Heatmap (Price, Score, Reviews, GMV)</span>
                 <div class="chart-wrapper">
                     <div id="genre-heatmap"></div>
                 </div>
-            </section>
+            </section> {% endcomment %}
 
 
 
@@ -402,7 +402,7 @@
     // ---------------------------
     // --- 장르별 상관관계 히트맵 ---
     // ---------------------------
-    fetch("{% url 'genre-heatmap' %}")
+    {% comment %} fetch("{% url 'genre-heatmap' %}")
     .then(res => res.json())
     .then(data => {
         const genres = Object.keys(data); // ['소설','경제',...]
@@ -460,7 +460,7 @@
         };
 
         Plotly.newPlot('genre-heatmap', [trace], layout, {responsive: true});
-    });
+    }); {% endcomment %}
 
 
     </script>
